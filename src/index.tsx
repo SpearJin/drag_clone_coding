@@ -4,16 +4,6 @@ import { createGlobalStyle, ThemeProvider } from 'styled-components';
 import App from './App';
 import { theme } from './theme';
 
-ReactDOM.render(
-  <React.StrictMode>
-    <ThemeProvider theme={theme}>
-      <GlobalStyle />
-      <App />
-    </ThemeProvider>
-  </React.StrictMode>,
-  document.getElementById('root')
-);
-
 const GlobalStyle = createGlobalStyle`
   html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
@@ -61,3 +51,13 @@ table {
 	border-spacing: 0;
 }
 `;
+
+ReactDOM.render(
+  <React.StrictMode>
+    <ThemeProvider theme={theme}>
+      <GlobalStyle />
+      <App />
+    </ThemeProvider>
+  </React.StrictMode>,
+  document.getElementById('root')
+);
