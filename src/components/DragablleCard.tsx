@@ -11,8 +11,13 @@ function DragablleCard({ toDo, index }: IDraggabbleCardProps) {
   console.log(`${toDo} has been rendering`);
   return (
     <Draggable key={toDo} draggableId={toDo} index={index}>
-      {(magic) => (
-        <Card ref={magic.innerRef} {...magic.draggableProps} {...magic.dragHandleProps}>
+      {(magic, snapshot) => (
+        <Card
+          isDragging={snapshot.isDragging}
+          ref={magic.innerRef}
+          {...magic.draggableProps}
+          {...magic.dragHandleProps}
+        >
           {toDo}
         </Card>
       )}
@@ -20,10 +25,12 @@ function DragablleCard({ toDo, index }: IDraggabbleCardProps) {
   );
 }
 
-const Card = styled.div`
+const Card = styled.div<{ isDragging: boolean }>`
   margin-bottom: 5px;
   padding: 10px;
-  background-color: ${(props) => props.theme.cardColor};
+  border-radius: 5px;
+  background-color: ${(props) => (props.isDragging ? '#e4f2ff' : props.theme.cardColor)};
+  box-shadow: ${(props) => (props.isDragging ? '0px 2px 5px rgba(0, 0, 0, 0.5)' : 'none')};
 `;
 
 export default React.memo(DragablleCard);

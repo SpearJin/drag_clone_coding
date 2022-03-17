@@ -16,7 +16,6 @@ function Board({ toDos, boardId }: IBoardProps) {
           <Area
             isDraggingOver={info.isDraggingOver}
             isDraggingFromThis={Boolean(info.draggingFromThisWith)}
-            style={{ backgroundColor: 'red' }}
             ref={magic.innerRef}
             {...magic.droppableProps}
           >
@@ -34,10 +33,11 @@ function Board({ toDos, boardId }: IBoardProps) {
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
-  padding: 20px 10px;
+  padding-top: 10px;
   min-height: 200px;
   border-radius: 5px;
   background-color: ${(props) => props.theme.boardColor};
+  overflow: hidden;
 `;
 
 const Title = styled.h2`
@@ -54,7 +54,9 @@ interface IAreaProps {
 
 const Area = styled.div<IAreaProps>`
   flex-grow: 1;
-  background-color: ${(props) => (props.isDraggingOver ? 'pink' : props.isDraggingFromThis ? 'red' : 'blue')};
+  padding: 20px;
+  background-color: ${(props) =>
+    props.isDraggingOver ? '#dfe6e9' : props.isDraggingFromThis ? '#b2bec3' : 'transparent'};
   transition: background-color 250ms ease-in;
 `;
 
